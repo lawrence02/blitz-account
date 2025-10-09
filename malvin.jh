@@ -1,0 +1,260 @@
+enum AccountType {
+  ASSET, LIABILITY, EQUITY, INCOME, EXPENSE
+}
+
+enum PaymentStatus {
+  UNPAID, PARTIALLY_PAID, PAID
+}
+
+enum TransactionType {
+  INCOME, EXPENSE
+}
+
+enum PaymentMethod {
+  CASH, BANK_TRANSFER, MOBILE_MONEY
+}
+
+enum TransactionDirection {
+  CREDIT, DEBIT
+}
+
+enum VehicleStatus {
+  AVAILABLE, IDLE, MAINTENANCE, IN_TRIP
+}
+
+enum DocumentStatus {
+  DRAFT, SENT, APPROVED, REJECTED, PAID
+}
+
+enum IncidentType {
+  ACCIDENT, DENT, BREAKDOWN
+}
+
+entity Currency {
+  code String required,
+  name String required,
+  symbol String
+}
+
+entity ExchangeRate {
+  baseCurrencyId Long required,
+  targetCurrencyId Long required,
+  rate BigDecimal required,
+  rateDate Instant required
+}
+
+entity VATRate {
+  name String required,
+  percentage BigDecimal required
+}
+
+entity ChartOfAccount {
+  name String required,
+  accountType AccountType required,
+  code String required,
+  initialBalance BigDecimal,
+  currentBalance BigDecimal
+}
+
+entity BankAccount {
+  name String required,
+  accountNumber String required,
+  bankName String
+}
+
+entity BankTransaction {
+  bankAccountId Long required,
+  transactionDate Instant required,
+  reference String,
+  amount BigDecimal required,
+  direction TransactionDirection required,
+  relatedPaymentId Long,
+  description String
+}
+
+entity Transaction {
+  type TransactionType required,
+  amount BigDecimal required,
+  transactionDate Instant required,
+  accountId Long,
+  vatRateId Long,
+  currencyId Long
+}
+
+entity Employee {
+  name String required,
+  role String required,
+  contactNumber String,
+  email String
+}
+
+entity Supplier {
+  name String required,
+  contactNumber String,
+  email String,
+  address String
+}
+
+entity ProductCategory {
+  name String required
+}
+
+entity Product {
+  name String required,
+  categoryId Long,
+  supplierId Long,
+  unitCost BigDecimal,
+  unitPrice BigDecimal,
+  stockQty Integer
+}
+
+entity Payment {
+  amount BigDecimal required,
+  paymentDate Instant required,
+  method PaymentMethod required,
+  currencyId Long,
+  bankAccountId Long,
+  invoiceId Long
+}
+
+entity Quote {
+  clientName String required,
+  issueDate Instant required,
+  status DocumentStatus required,
+  currencyId Long,
+  vatRateId Long,
+  totalAmount BigDecimal
+}
+
+entity QuoteLine {
+  quoteId Long required,
+  productId Long,
+  quantity Integer,
+  unitPrice BigDecimal,
+  vatRateId Long
+}
+
+entity Invoice {
+  clientName String required,
+  issueDate Instant required,
+  dueDate Instant,
+  status DocumentStatus,
+  currencyId Long,
+  vatRateId Long,
+  totalAmount BigDecimal required,
+  paidAmount BigDecimal,
+  paymentStatus PaymentStatus required
+}
+
+entity InvoiceLine {
+  invoiceId Long required,
+  productId Long,
+  quantity Integer,
+  unitPrice BigDecimal,
+  vatRateId Long
+}
+
+entity CashSale {
+  productId Long,
+  quantity Integer,
+  unitPrice BigDecimal,
+  vatRateId Long,
+  currencyId Long,
+  saleDate Instant
+}
+
+entity Vehicle {
+  name String required,
+  licensePlate String required,
+  type String,
+  currentMileage Double,
+  status VehicleStatus required
+}
+
+entity FleetTrip {
+  vehicleId Long required,
+  driverId Long,
+  startDate Instant required,
+  endDate Instant,
+  distanceKm Double,
+  startLocation String,
+  endLocation String,
+  loadType String,
+  loadDescription String,
+  routeGeoCoordinates TextBlob,
+  tripCost BigDecimal
+}
+
+entity FuelLog {
+  vehicleId Long required,
+  date Instant required,
+  fuelVolume Double,
+  fuelCost BigDecimal,
+  location String,
+  tripId Long
+}
+
+entity ServiceLog {
+  vehicleId Long required,
+  serviceDate Instant required,
+  description String,
+  cost BigDecimal,
+  mileageAtService Double,
+  supplierId Long
+}
+
+entity IncidentLog {
+  vehicleId Long required,
+  tripId Long,
+  incidentDate Instant required,
+  type IncidentType,
+  description String,
+  cost BigDecimal
+}
+
+entity Budget {
+  name String required,
+  startDate Instant required,
+  endDate Instant required,
+  accountId Long,
+  amount BigDecimal required
+}
+
+entity RecurringTransaction {
+  name String required,
+  amount BigDecimal required,
+  frequency String required,
+  startDate Instant required,
+  endDate Instant,
+  accountId Long,
+  currencyId Long,
+  vatRateId Long
+}
+
+entity Journal {
+  journalDate Instant required,
+  reference String,
+  description String
+}
+
+entity JournalLine {
+  journalId Long required,
+  accountId Long required,
+  debit BigDecimal,
+  credit BigDecimal
+}
+
+
+entity FleetTripLocation {
+  fleetTripId Long required,
+  timestamp Instant required,
+  latitude Double required,
+  longitude Double required,
+  speed Double,
+  heading Double
+}
+
+
+service all with serviceClass
+paginate * with pagination
+filter Vehicle, Invoice, BankAccount, ChartOfAccount, FleetTrip, Product, Supplier
