@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-cash-sale-heading" data-cy="CashSaleCreateUpdateHeading" jhiTranslate="blitzAccountApp.cashSale.home.createOrEditLabel">
+        Create or edit a Cash Sale
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="blitzAccountApp.cashSale.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_productId" jhiTranslate="blitzAccountApp.cashSale.productId">Product Id</label>
+          <input type="number" class="form-control" name="productId" id="field_productId" data-cy="productId" formControlName="productId" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_quantity" jhiTranslate="blitzAccountApp.cashSale.quantity">Quantity</label>
+          <input type="number" class="form-control" name="quantity" id="field_quantity" data-cy="quantity" formControlName="quantity" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_unitPrice" jhiTranslate="blitzAccountApp.cashSale.unitPrice">Unit Price</label>
+          <input type="number" class="form-control" name="unitPrice" id="field_unitPrice" data-cy="unitPrice" formControlName="unitPrice" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_vatRateId" jhiTranslate="blitzAccountApp.cashSale.vatRateId">Vat Rate Id</label>
+          <input type="number" class="form-control" name="vatRateId" id="field_vatRateId" data-cy="vatRateId" formControlName="vatRateId" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_currencyId" jhiTranslate="blitzAccountApp.cashSale.currencyId">Currency Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="currencyId"
+            id="field_currencyId"
+            data-cy="currencyId"
+            formControlName="currencyId"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_saleDate" jhiTranslate="blitzAccountApp.cashSale.saleDate">Sale Date</label>
+          <div class="d-flex">
+            <input
+              id="field_saleDate"
+              data-cy="saleDate"
+              type="datetime-local"
+              class="form-control"
+              name="saleDate"
+              formControlName="saleDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

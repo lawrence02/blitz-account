@@ -1,0 +1,10 @@
+{
+  "blitzAccountApp": {
+    "IncidentType": {
+      "null": "",
+      "ACCIDENT": "ACCIDENT",
+      "DENT": "DENT",
+      "BREAKDOWN": "BREAKDOWN"
+    }
+  }
+}

@@ -1,0 +1,185 @@
+<div>
+  <h2 id="page-heading" data-cy="FleetTripHeading">
+    <span jhiTranslate="blitzAccountApp.fleetTrip.home.title">Fleet Trips</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="blitzAccountApp.fleetTrip.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-fleet-trip"
+        [routerLink]="['/fleet-trip/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="blitzAccountApp.fleetTrip.home.createLabel">Create a new Fleet Trip</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  <jhi-filter [filters]="filters" />
+
+  @if (fleetTrips().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="blitzAccountApp.fleetTrip.home.notFound">No Fleet Trips found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="vehicleId">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTrip.vehicleId">Vehicle Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="driverId">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTrip.driverId">Driver Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="startDate">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTrip.startDate">Start Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="endDate">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTrip.endDate">End Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="distanceKm">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTrip.distanceKm">Distance Km</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="startLocation">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTrip.startLocation">Start Location</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="endLocation">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTrip.endLocation">End Location</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="loadType">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTrip.loadType">Load Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="loadDescription">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTrip.loadDescription">Load Description</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="routeGeoCoordinates">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTrip.routeGeoCoordinates">Route Geo Coordinates</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tripCost">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTrip.tripCost">Trip Cost</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (fleetTrip of fleetTrips(); track trackId(fleetTrip)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/fleet-trip', fleetTrip.id, 'view']">{{ fleetTrip.id }}</a>
+              </td>
+              <td>{{ fleetTrip.vehicleId }}</td>
+              <td>{{ fleetTrip.driverId }}</td>
+              <td>{{ fleetTrip.startDate | formatMediumDatetime }}</td>
+              <td>{{ fleetTrip.endDate | formatMediumDatetime }}</td>
+              <td>{{ fleetTrip.distanceKm }}</td>
+              <td>{{ fleetTrip.startLocation }}</td>
+              <td>{{ fleetTrip.endLocation }}</td>
+              <td>{{ fleetTrip.loadType }}</td>
+              <td>{{ fleetTrip.loadDescription }}</td>
+              <td>{{ fleetTrip.routeGeoCoordinates }}</td>
+              <td>{{ fleetTrip.tripCost }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/fleet-trip', fleetTrip.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/fleet-trip', fleetTrip.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(fleetTrip)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (fleetTrips().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

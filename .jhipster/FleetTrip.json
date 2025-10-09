@@ -1,0 +1,60 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084909"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "vehicleId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "driverId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "distanceKm",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "startLocation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "endLocation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "loadType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "loadDescription",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "routeGeoCoordinates",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "tripCost",
+      "fieldType": "BigDecimal"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "FleetTrip",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

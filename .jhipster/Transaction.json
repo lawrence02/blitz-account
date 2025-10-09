@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084857"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "TransactionType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "INCOME,EXPENSE"
+    },
+    {
+      "fieldName": "amount",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "transactionDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "accountId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "vatRateId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "currencyId",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "Transaction",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

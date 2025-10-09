@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (exchangeRate(); as exchangeRateRef) {
+      <div>
+        <h2 data-cy="exchangeRateDetailsHeading"><span jhiTranslate="blitzAccountApp.exchangeRate.detail.title">Exchange Rate</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ exchangeRateRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.exchangeRate.baseCurrencyId">Base Currency Id</span></dt>
+          <dd>
+            <span>{{ exchangeRateRef.baseCurrencyId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.exchangeRate.targetCurrencyId">Target Currency Id</span></dt>
+          <dd>
+            <span>{{ exchangeRateRef.targetCurrencyId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.exchangeRate.rate">Rate</span></dt>
+          <dd>
+            <span>{{ exchangeRateRef.rate }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.exchangeRate.rateDate">Rate Date</span></dt>
+          <dd>
+            <span>{{ exchangeRateRef.rateDate | formatMediumDatetime }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/exchange-rate', exchangeRateRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

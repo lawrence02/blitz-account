@@ -1,0 +1,29 @@
+{
+  "blitzAccountApp": {
+    "cashSale": {
+      "home": {
+        "title": "Cash Sales",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cash Sale",
+        "createOrEditLabel": "Create or edit a Cash Sale",
+        "notFound": "No Cash Sales found"
+      },
+      "created": "A new Cash Sale is created with identifier {{ param }}",
+      "updated": "A Cash Sale is updated with identifier {{ param }}",
+      "deleted": "A Cash Sale is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cash Sale {{ id }}?"
+      },
+      "detail": {
+        "title": "Cash Sale"
+      },
+      "id": "ID",
+      "productId": "Product Id",
+      "quantity": "Quantity",
+      "unitPrice": "Unit Price",
+      "vatRateId": "Vat Rate Id",
+      "currencyId": "Currency Id",
+      "saleDate": "Sale Date"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084910"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "vehicleId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fuelVolume",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "fuelCost",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "location",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tripId",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "FuelLog",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

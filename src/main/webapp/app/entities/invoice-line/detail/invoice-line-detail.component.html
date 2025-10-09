@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (invoiceLine(); as invoiceLineRef) {
+      <div>
+        <h2 data-cy="invoiceLineDetailsHeading"><span jhiTranslate="blitzAccountApp.invoiceLine.detail.title">Invoice Line</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ invoiceLineRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoiceLine.invoiceId">Invoice Id</span></dt>
+          <dd>
+            <span>{{ invoiceLineRef.invoiceId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoiceLine.productId">Product Id</span></dt>
+          <dd>
+            <span>{{ invoiceLineRef.productId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoiceLine.quantity">Quantity</span></dt>
+          <dd>
+            <span>{{ invoiceLineRef.quantity }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoiceLine.unitPrice">Unit Price</span></dt>
+          <dd>
+            <span>{{ invoiceLineRef.unitPrice }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoiceLine.vatRateId">Vat Rate Id</span></dt>
+          <dd>
+            <span>{{ invoiceLineRef.vatRateId }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/invoice-line', invoiceLineRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

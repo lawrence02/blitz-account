@@ -1,0 +1,145 @@
+<div>
+  <h2 id="page-heading" data-cy="IncidentLogHeading">
+    <span jhiTranslate="blitzAccountApp.incidentLog.home.title">Incident Logs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="blitzAccountApp.incidentLog.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-incident-log"
+        [routerLink]="['/incident-log/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="blitzAccountApp.incidentLog.home.createLabel">Create a new Incident Log</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (incidentLogs().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="blitzAccountApp.incidentLog.home.notFound">No Incident Logs found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="vehicleId">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.incidentLog.vehicleId">Vehicle Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tripId">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.incidentLog.tripId">Trip Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="incidentDate">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.incidentLog.incidentDate">Incident Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="type">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.incidentLog.type">Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="description">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.incidentLog.description">Description</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cost">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.incidentLog.cost">Cost</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (incidentLog of incidentLogs(); track trackId(incidentLog)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/incident-log', incidentLog.id, 'view']">{{ incidentLog.id }}</a>
+              </td>
+              <td>{{ incidentLog.vehicleId }}</td>
+              <td>{{ incidentLog.tripId }}</td>
+              <td>{{ incidentLog.incidentDate | formatMediumDatetime }}</td>
+              <td [jhiTranslate]="'blitzAccountApp.IncidentType.' + (incidentLog.type ?? 'null')">
+                {{ { null: '', ACCIDENT: 'ACCIDENT', DENT: 'DENT', BREAKDOWN: 'BREAKDOWN' }[incidentLog.type ?? 'null'] }}
+              </td>
+              <td>{{ incidentLog.description }}</td>
+              <td>{{ incidentLog.cost }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/incident-log', incidentLog.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/incident-log', incidentLog.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(incidentLog)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (incidentLogs().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

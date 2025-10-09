@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (fleetTrip(); as fleetTripRef) {
+      <div>
+        <h2 data-cy="fleetTripDetailsHeading"><span jhiTranslate="blitzAccountApp.fleetTrip.detail.title">Fleet Trip</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ fleetTripRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTrip.vehicleId">Vehicle Id</span></dt>
+          <dd>
+            <span>{{ fleetTripRef.vehicleId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTrip.driverId">Driver Id</span></dt>
+          <dd>
+            <span>{{ fleetTripRef.driverId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTrip.startDate">Start Date</span></dt>
+          <dd>
+            <span>{{ fleetTripRef.startDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTrip.endDate">End Date</span></dt>
+          <dd>
+            <span>{{ fleetTripRef.endDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTrip.distanceKm">Distance Km</span></dt>
+          <dd>
+            <span>{{ fleetTripRef.distanceKm }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTrip.startLocation">Start Location</span></dt>
+          <dd>
+            <span>{{ fleetTripRef.startLocation }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTrip.endLocation">End Location</span></dt>
+          <dd>
+            <span>{{ fleetTripRef.endLocation }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTrip.loadType">Load Type</span></dt>
+          <dd>
+            <span>{{ fleetTripRef.loadType }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTrip.loadDescription">Load Description</span></dt>
+          <dd>
+            <span>{{ fleetTripRef.loadDescription }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTrip.routeGeoCoordinates">Route Geo Coordinates</span></dt>
+          <dd>
+            <span>{{ fleetTripRef.routeGeoCoordinates }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTrip.tripCost">Trip Cost</span></dt>
+          <dd>
+            <span>{{ fleetTripRef.tripCost }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/fleet-trip', fleetTripRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

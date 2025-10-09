@@ -1,0 +1,28 @@
+@if (exchangeRate) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(exchangeRate.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="exchangeRateDeleteDialogHeading" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error />
+      <p
+        id="jhi-delete-exchangeRate-heading"
+        jhiTranslate="blitzAccountApp.exchangeRate.delete.question"
+        [translateValues]="{ id: exchangeRate.id }"
+      >
+        Are you sure you want to delete Exchange Rate {{ exchangeRate.id }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+      </button>
+
+      <button id="jhi-confirm-delete-exchangeRate" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
+      </button>
+    </div>
+  </form>
+}

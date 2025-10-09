@@ -1,0 +1,151 @@
+<div>
+  <h2 id="page-heading" data-cy="FleetTripLocationHeading">
+    <span jhiTranslate="blitzAccountApp.fleetTripLocation.home.title">Fleet Trip Locations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="blitzAccountApp.fleetTripLocation.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-fleet-trip-location"
+        [routerLink]="['/fleet-trip-location/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="blitzAccountApp.fleetTripLocation.home.createLabel">Create a new Fleet Trip Location</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (fleetTripLocations().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="blitzAccountApp.fleetTripLocation.home.notFound">No Fleet Trip Locations found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fleetTripId">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTripLocation.fleetTripId">Fleet Trip Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="timestamp">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTripLocation.timestamp">Timestamp</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="latitude">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTripLocation.latitude">Latitude</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="longitude">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTripLocation.longitude">Longitude</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="speed">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTripLocation.speed">Speed</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="heading">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.fleetTripLocation.heading">Heading</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (fleetTripLocation of fleetTripLocations(); track trackId(fleetTripLocation)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/fleet-trip-location', fleetTripLocation.id, 'view']">{{ fleetTripLocation.id }}</a>
+              </td>
+              <td>{{ fleetTripLocation.fleetTripId }}</td>
+              <td>{{ fleetTripLocation.timestamp | formatMediumDatetime }}</td>
+              <td>{{ fleetTripLocation.latitude }}</td>
+              <td>{{ fleetTripLocation.longitude }}</td>
+              <td>{{ fleetTripLocation.speed }}</td>
+              <td>{{ fleetTripLocation.heading }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/fleet-trip-location', fleetTripLocation.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/fleet-trip-location', fleetTripLocation.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(fleetTripLocation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (fleetTripLocations().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084907"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "productId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "quantity",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "unitPrice",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "vatRateId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "currencyId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "saleDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "CashSale",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

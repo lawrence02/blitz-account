@@ -1,0 +1,12 @@
+{
+  "blitzAccountApp": {
+    "DocumentStatus": {
+      "null": "",
+      "DRAFT": "DRAFT",
+      "SENT": "SENT",
+      "APPROVED": "APPROVED",
+      "REJECTED": "REJECTED",
+      "PAID": "PAID"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (fleetTripLocation(); as fleetTripLocationRef) {
+      <div>
+        <h2 data-cy="fleetTripLocationDetailsHeading">
+          <span jhiTranslate="blitzAccountApp.fleetTripLocation.detail.title">Fleet Trip Location</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ fleetTripLocationRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTripLocation.fleetTripId">Fleet Trip Id</span></dt>
+          <dd>
+            <span>{{ fleetTripLocationRef.fleetTripId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTripLocation.timestamp">Timestamp</span></dt>
+          <dd>
+            <span>{{ fleetTripLocationRef.timestamp | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTripLocation.latitude">Latitude</span></dt>
+          <dd>
+            <span>{{ fleetTripLocationRef.latitude }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTripLocation.longitude">Longitude</span></dt>
+          <dd>
+            <span>{{ fleetTripLocationRef.longitude }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTripLocation.speed">Speed</span></dt>
+          <dd>
+            <span>{{ fleetTripLocationRef.speed }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.fleetTripLocation.heading">Heading</span></dt>
+          <dd>
+            <span>{{ fleetTripLocationRef.heading }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/fleet-trip-location', fleetTripLocationRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

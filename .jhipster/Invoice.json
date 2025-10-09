@@ -1,0 +1,56 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084905"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "clientName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "issueDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dueDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "DocumentStatus",
+      "fieldValues": "DRAFT,SENT,APPROVED,REJECTED,PAID"
+    },
+    {
+      "fieldName": "currencyId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "vatRateId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "totalAmount",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "paidAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "paymentStatus",
+      "fieldType": "PaymentStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "UNPAID,PARTIALLY_PAID,PAID"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Invoice",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

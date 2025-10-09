@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084854"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "accountType",
+      "fieldType": "AccountType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ASSET,LIABILITY,EQUITY,INCOME,EXPENSE"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "initialBalance",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "currentBalance",
+      "fieldType": "BigDecimal"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "ChartOfAccount",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

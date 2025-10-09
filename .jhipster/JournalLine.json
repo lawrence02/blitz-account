@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084916"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "journalId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "accountId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "debit",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "credit",
+      "fieldType": "BigDecimal"
+    }
+  ],
+  "name": "JournalLine",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

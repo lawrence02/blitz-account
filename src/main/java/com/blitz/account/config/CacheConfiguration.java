@@ -50,6 +50,33 @@ public class CacheConfiguration {
             createCache(cm, com.blitz.account.domain.User.class.getName());
             createCache(cm, com.blitz.account.domain.Authority.class.getName());
             createCache(cm, com.blitz.account.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.blitz.account.domain.Currency.class.getName());
+            createCache(cm, com.blitz.account.domain.ExchangeRate.class.getName());
+            createCache(cm, com.blitz.account.domain.VATRate.class.getName());
+            createCache(cm, com.blitz.account.domain.ChartOfAccount.class.getName());
+            createCache(cm, com.blitz.account.domain.BankAccount.class.getName());
+            createCache(cm, com.blitz.account.domain.BankTransaction.class.getName());
+            createCache(cm, com.blitz.account.domain.Transaction.class.getName());
+            createCache(cm, com.blitz.account.domain.Employee.class.getName());
+            createCache(cm, com.blitz.account.domain.Supplier.class.getName());
+            createCache(cm, com.blitz.account.domain.ProductCategory.class.getName());
+            createCache(cm, com.blitz.account.domain.Product.class.getName());
+            createCache(cm, com.blitz.account.domain.Payment.class.getName());
+            createCache(cm, com.blitz.account.domain.Quote.class.getName());
+            createCache(cm, com.blitz.account.domain.QuoteLine.class.getName());
+            createCache(cm, com.blitz.account.domain.Invoice.class.getName());
+            createCache(cm, com.blitz.account.domain.InvoiceLine.class.getName());
+            createCache(cm, com.blitz.account.domain.CashSale.class.getName());
+            createCache(cm, com.blitz.account.domain.Vehicle.class.getName());
+            createCache(cm, com.blitz.account.domain.FleetTrip.class.getName());
+            createCache(cm, com.blitz.account.domain.FuelLog.class.getName());
+            createCache(cm, com.blitz.account.domain.ServiceLog.class.getName());
+            createCache(cm, com.blitz.account.domain.IncidentLog.class.getName());
+            createCache(cm, com.blitz.account.domain.Budget.class.getName());
+            createCache(cm, com.blitz.account.domain.RecurringTransaction.class.getName());
+            createCache(cm, com.blitz.account.domain.Journal.class.getName());
+            createCache(cm, com.blitz.account.domain.JournalLine.class.getName());
+            createCache(cm, com.blitz.account.domain.FleetTripLocation.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

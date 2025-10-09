@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (incidentLog(); as incidentLogRef) {
+      <div>
+        <h2 data-cy="incidentLogDetailsHeading"><span jhiTranslate="blitzAccountApp.incidentLog.detail.title">Incident Log</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ incidentLogRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.incidentLog.vehicleId">Vehicle Id</span></dt>
+          <dd>
+            <span>{{ incidentLogRef.vehicleId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.incidentLog.tripId">Trip Id</span></dt>
+          <dd>
+            <span>{{ incidentLogRef.tripId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.incidentLog.incidentDate">Incident Date</span></dt>
+          <dd>
+            <span>{{ incidentLogRef.incidentDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.incidentLog.type">Type</span></dt>
+          <dd>
+            <span [jhiTranslate]="'blitzAccountApp.IncidentType.' + (incidentLogRef.type ?? 'null')">{{
+              { null: '', ACCIDENT: 'ACCIDENT', DENT: 'DENT', BREAKDOWN: 'BREAKDOWN' }[incidentLogRef.type ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.incidentLog.description">Description</span></dt>
+          <dd>
+            <span>{{ incidentLogRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.incidentLog.cost">Cost</span></dt>
+          <dd>
+            <span>{{ incidentLogRef.cost }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/incident-log', incidentLogRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

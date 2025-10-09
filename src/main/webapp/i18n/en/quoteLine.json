@@ -1,0 +1,28 @@
+{
+  "blitzAccountApp": {
+    "quoteLine": {
+      "home": {
+        "title": "Quote Lines",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Quote Line",
+        "createOrEditLabel": "Create or edit a Quote Line",
+        "notFound": "No Quote Lines found"
+      },
+      "created": "A new Quote Line is created with identifier {{ param }}",
+      "updated": "A Quote Line is updated with identifier {{ param }}",
+      "deleted": "A Quote Line is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Quote Line {{ id }}?"
+      },
+      "detail": {
+        "title": "Quote Line"
+      },
+      "id": "ID",
+      "quoteId": "Quote Id",
+      "productId": "Product Id",
+      "quantity": "Quantity",
+      "unitPrice": "Unit Price",
+      "vatRateId": "Vat Rate Id"
+    }
+  }
+}

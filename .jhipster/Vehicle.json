@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084908"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "licensePlate",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "currentMileage",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "VehicleStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "AVAILABLE,IDLE,MAINTENANCE,IN_TRIP"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Vehicle",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,189 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-invoice-heading" data-cy="InvoiceCreateUpdateHeading" jhiTranslate="blitzAccountApp.invoice.home.createOrEditLabel">
+        Create or edit a Invoice
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="blitzAccountApp.invoice.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let clientNameRef = editForm.get('clientName')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_clientName" jhiTranslate="blitzAccountApp.invoice.clientName">Client Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="clientName"
+            id="field_clientName"
+            data-cy="clientName"
+            formControlName="clientName"
+          />
+          @if (clientNameRef.invalid && (clientNameRef.dirty || clientNameRef.touched)) {
+            <div>
+              @if (editForm.get('clientName')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let issueDateRef = editForm.get('issueDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_issueDate" jhiTranslate="blitzAccountApp.invoice.issueDate">Issue Date</label>
+          <div class="d-flex">
+            <input
+              id="field_issueDate"
+              data-cy="issueDate"
+              type="datetime-local"
+              class="form-control"
+              name="issueDate"
+              formControlName="issueDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (issueDateRef.invalid && (issueDateRef.dirty || issueDateRef.touched)) {
+            <div>
+              @if (editForm.get('issueDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('issueDate')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dueDate" jhiTranslate="blitzAccountApp.invoice.dueDate">Due Date</label>
+          <div class="d-flex">
+            <input
+              id="field_dueDate"
+              data-cy="dueDate"
+              type="datetime-local"
+              class="form-control"
+              name="dueDate"
+              formControlName="dueDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_status" jhiTranslate="blitzAccountApp.invoice.status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'blitzAccountApp.DocumentStatus.null' | translate }}</option>
+            @for (documentStatus of documentStatusValues; track $index) {
+              <option [value]="documentStatus">{{ 'blitzAccountApp.DocumentStatus.' + documentStatus | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_currencyId" jhiTranslate="blitzAccountApp.invoice.currencyId">Currency Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="currencyId"
+            id="field_currencyId"
+            data-cy="currencyId"
+            formControlName="currencyId"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_vatRateId" jhiTranslate="blitzAccountApp.invoice.vatRateId">Vat Rate Id</label>
+          <input type="number" class="form-control" name="vatRateId" id="field_vatRateId" data-cy="vatRateId" formControlName="vatRateId" />
+        </div>
+
+        @let totalAmountRef = editForm.get('totalAmount')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_totalAmount" jhiTranslate="blitzAccountApp.invoice.totalAmount">Total Amount</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalAmount"
+            id="field_totalAmount"
+            data-cy="totalAmount"
+            formControlName="totalAmount"
+          />
+          @if (totalAmountRef.invalid && (totalAmountRef.dirty || totalAmountRef.touched)) {
+            <div>
+              @if (editForm.get('totalAmount')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('totalAmount')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_paidAmount" jhiTranslate="blitzAccountApp.invoice.paidAmount">Paid Amount</label>
+          <input
+            type="number"
+            class="form-control"
+            name="paidAmount"
+            id="field_paidAmount"
+            data-cy="paidAmount"
+            formControlName="paidAmount"
+          />
+        </div>
+
+        @let paymentStatusRef = editForm.get('paymentStatus')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_paymentStatus" jhiTranslate="blitzAccountApp.invoice.paymentStatus">Payment Status</label>
+          <select
+            class="form-control"
+            name="paymentStatus"
+            formControlName="paymentStatus"
+            id="field_paymentStatus"
+            data-cy="paymentStatus"
+          >
+            <option [ngValue]="null">{{ 'blitzAccountApp.PaymentStatus.null' | translate }}</option>
+            @for (paymentStatus of paymentStatusValues; track $index) {
+              <option [value]="paymentStatus">{{ 'blitzAccountApp.PaymentStatus.' + paymentStatus | translate }}</option>
+            }
+          </select>
+          @if (paymentStatusRef.invalid && (paymentStatusRef.dirty || paymentStatusRef.touched)) {
+            <div>
+              @if (editForm.get('paymentStatus')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084912"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "vehicleId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tripId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "incidentDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "IncidentType",
+      "fieldValues": "ACCIDENT,DENT,BREAKDOWN"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cost",
+      "fieldType": "BigDecimal"
+    }
+  ],
+  "name": "IncidentLog",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,34 @@
+{
+  "blitzAccountApp": {
+    "fleetTrip": {
+      "home": {
+        "title": "Fleet Trips",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Fleet Trip",
+        "createOrEditLabel": "Create or edit a Fleet Trip",
+        "notFound": "No Fleet Trips found"
+      },
+      "created": "A new Fleet Trip is created with identifier {{ param }}",
+      "updated": "A Fleet Trip is updated with identifier {{ param }}",
+      "deleted": "A Fleet Trip is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Fleet Trip {{ id }}?"
+      },
+      "detail": {
+        "title": "Fleet Trip"
+      },
+      "id": "ID",
+      "vehicleId": "Vehicle Id",
+      "driverId": "Driver Id",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "distanceKm": "Distance Km",
+      "startLocation": "Start Location",
+      "endLocation": "End Location",
+      "loadType": "Load Type",
+      "loadDescription": "Load Description",
+      "routeGeoCoordinates": "Route Geo Coordinates",
+      "tripCost": "Trip Cost"
+    }
+  }
+}
