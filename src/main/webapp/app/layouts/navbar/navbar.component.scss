@@ -5,11 +5,6 @@
 Navbar
 ========================================================================== */
 
-.navbar-version {
-  font-size: 0.65em;
-  color: $navbar-dark-color;
-}
-
 .profile-image {
   height: 1.75em;
   width: 1.75em;
@@ -17,9 +12,19 @@ Navbar
 
 .navbar {
   padding: 0.2rem 1rem;
+  background-color: #343a40 !important; /* Dark teal navbar */
 
   a.nav-link {
     font-weight: 400;
+    color: #dde1e7; /* link color */
+    &:hover {
+      color: #101312; /* lighter teal on hover */
+    }
+  }
+
+  .navbar-version {
+    font-size: 0.65em;
+    color: #0f0e0e; /* version text color */
   }
 }
 
