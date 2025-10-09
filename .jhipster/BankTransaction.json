@@ -1,0 +1,46 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084856"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "bankAccountId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "transactionDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "reference",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "amount",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "direction",
+      "fieldType": "TransactionDirection",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CREDIT,DEBIT"
+    },
+    {
+      "fieldName": "relatedPaymentId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "name": "BankTransaction",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

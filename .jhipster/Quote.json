@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084903"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "clientName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "issueDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "DocumentStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "DRAFT,SENT,APPROVED,REJECTED,PAID"
+    },
+    {
+      "fieldName": "currencyId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "vatRateId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "totalAmount",
+      "fieldType": "BigDecimal"
+    }
+  ],
+  "name": "Quote",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

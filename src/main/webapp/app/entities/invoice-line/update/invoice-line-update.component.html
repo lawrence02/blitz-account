@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-invoice-line-heading"
+        data-cy="InvoiceLineCreateUpdateHeading"
+        jhiTranslate="blitzAccountApp.invoiceLine.home.createOrEditLabel"
+      >
+        Create or edit a Invoice Line
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="blitzAccountApp.invoiceLine.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let invoiceIdRef = editForm.get('invoiceId')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_invoiceId" jhiTranslate="blitzAccountApp.invoiceLine.invoiceId">Invoice Id</label>
+          <input type="number" class="form-control" name="invoiceId" id="field_invoiceId" data-cy="invoiceId" formControlName="invoiceId" />
+          @if (invoiceIdRef.invalid && (invoiceIdRef.dirty || invoiceIdRef.touched)) {
+            <div>
+              @if (editForm.get('invoiceId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('invoiceId')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_productId" jhiTranslate="blitzAccountApp.invoiceLine.productId">Product Id</label>
+          <input type="number" class="form-control" name="productId" id="field_productId" data-cy="productId" formControlName="productId" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_quantity" jhiTranslate="blitzAccountApp.invoiceLine.quantity">Quantity</label>
+          <input type="number" class="form-control" name="quantity" id="field_quantity" data-cy="quantity" formControlName="quantity" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_unitPrice" jhiTranslate="blitzAccountApp.invoiceLine.unitPrice">Unit Price</label>
+          <input type="number" class="form-control" name="unitPrice" id="field_unitPrice" data-cy="unitPrice" formControlName="unitPrice" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_vatRateId" jhiTranslate="blitzAccountApp.invoiceLine.vatRateId">Vat Rate Id</label>
+          <input type="number" class="form-control" name="vatRateId" id="field_vatRateId" data-cy="vatRateId" formControlName="vatRateId" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+id;vehicle_id;driver_id;start_date;end_date;distance_km;start_location;end_location;load_type;load_description;route_geo_coordinates;trip_cost
+1;17665;16115;2025-10-09T00:47:03;2025-10-09T01:49:34;19223.34;deny or nautical;madly astride oh;tabulate octave;voluntarily;../fake-data/blob/hipster.txt;32292.5
+2;29285;28811;2025-10-08T18:53:28;2025-10-08T10:01:20;20317.12;yowza nearly;fooey yahoo only;low;physically er whereas;../fake-data/blob/hipster.txt;29832.41
+3;21116;9528;2025-10-08T08:55:08;2025-10-09T01:42:49;6374.81;ew;back excluding;since yet woot;honesty;../fake-data/blob/hipster.txt;25468.71
+4;20318;20641;2025-10-09T05:30:47;2025-10-08T18:30:07;1929.37;like;than;bowler petticoat astride;yahoo ugh ew;../fake-data/blob/hipster.txt;3754.65
+5;22496;10269;2025-10-08T21:57:26;2025-10-09T07:49:06;2328.09;promptly discrete;vice as mmm;respectful sweatshop;instead loyally;../fake-data/blob/hipster.txt;8452.01
+6;7227;13992;2025-10-08T21:25:55;2025-10-09T01:42:55;2170.58;finally within;potentially lest;mysteriously;yummy embarrassment colorfully;../fake-data/blob/hipster.txt;2566.01
+7;19119;277;2025-10-08T21:26:25;2025-10-09T02:22:18;26822.69;tall;unsteady;advanced huzzah;at apostrophize;../fake-data/blob/hipster.txt;12983.35
+8;6346;2817;2025-10-09T04:14:28;2025-10-08T12:59:23;7491.87;smooth phew soon;on;nerve;as;../fake-data/blob/hipster.txt;6216.14
+9;16729;5558;2025-10-08T11:31:26;2025-10-08T14:22:36;18626.56;colorless unibody;blissfully;kiddingly;frequent;../fake-data/blob/hipster.txt;21756.07
+10;18156;29140;2025-10-08T10:30:59;2025-10-08T21:41:01;17357.16;onto lest;dearly in;pointless reopen;quintessential unto;../fake-data/blob/hipster.txt;7847.06

@@ -1,0 +1,28 @@
+{
+  "blitzAccountApp": {
+    "chartOfAccount": {
+      "home": {
+        "title": "Chart Of Accounts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Chart Of Account",
+        "createOrEditLabel": "Create or edit a Chart Of Account",
+        "notFound": "No Chart Of Accounts found"
+      },
+      "created": "A new Chart Of Account is created with identifier {{ param }}",
+      "updated": "A Chart Of Account is updated with identifier {{ param }}",
+      "deleted": "A Chart Of Account is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Chart Of Account {{ id }}?"
+      },
+      "detail": {
+        "title": "Chart Of Account"
+      },
+      "id": "ID",
+      "name": "Name",
+      "accountType": "Account Type",
+      "code": "Code",
+      "initialBalance": "Initial Balance",
+      "currentBalance": "Current Balance"
+    }
+  }
+}

@@ -1,0 +1,111 @@
+<div>
+  <h2 id="page-heading" data-cy="VATRateHeading">
+    <span jhiTranslate="blitzAccountApp.vATRate.home.title">VAT Rates</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="blitzAccountApp.vATRate.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-vat-rate"
+        [routerLink]="['/vat-rate/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="blitzAccountApp.vATRate.home.createLabel">Create a new VAT Rate</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (vATRates().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="blitzAccountApp.vATRate.home.notFound">No VAT Rates found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="name">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.vATRate.name">Name</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="percentage">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.vATRate.percentage">Percentage</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (vATRate of vATRates(); track trackId(vATRate)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/vat-rate', vATRate.id, 'view']">{{ vATRate.id }}</a>
+              </td>
+              <td>{{ vATRate.name }}</td>
+              <td>{{ vATRate.percentage }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/vat-rate', vATRate.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/vat-rate', vATRate.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(vATRate)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (vATRates().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

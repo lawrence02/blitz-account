@@ -1,0 +1,9 @@
+{
+  "blitzAccountApp": {
+    "TransactionDirection": {
+      "null": "",
+      "CREDIT": "CREDIT",
+      "DEBIT": "DEBIT"
+    }
+  }
+}

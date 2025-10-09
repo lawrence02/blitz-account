@@ -1,0 +1,169 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-bank-transaction-heading"
+        data-cy="BankTransactionCreateUpdateHeading"
+        jhiTranslate="blitzAccountApp.bankTransaction.home.createOrEditLabel"
+      >
+        Create or edit a Bank Transaction
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="blitzAccountApp.bankTransaction.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let bankAccountIdRef = editForm.get('bankAccountId')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_bankAccountId" jhiTranslate="blitzAccountApp.bankTransaction.bankAccountId"
+            >Bank Account Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="bankAccountId"
+            id="field_bankAccountId"
+            data-cy="bankAccountId"
+            formControlName="bankAccountId"
+          />
+          @if (bankAccountIdRef.invalid && (bankAccountIdRef.dirty || bankAccountIdRef.touched)) {
+            <div>
+              @if (editForm.get('bankAccountId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('bankAccountId')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let transactionDateRef = editForm.get('transactionDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_transactionDate" jhiTranslate="blitzAccountApp.bankTransaction.transactionDate"
+            >Transaction Date</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_transactionDate"
+              data-cy="transactionDate"
+              type="datetime-local"
+              class="form-control"
+              name="transactionDate"
+              formControlName="transactionDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (transactionDateRef.invalid && (transactionDateRef.dirty || transactionDateRef.touched)) {
+            <div>
+              @if (editForm.get('transactionDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('transactionDate')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_reference" jhiTranslate="blitzAccountApp.bankTransaction.reference">Reference</label>
+          <input type="text" class="form-control" name="reference" id="field_reference" data-cy="reference" formControlName="reference" />
+        </div>
+
+        @let amountRef = editForm.get('amount')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_amount" jhiTranslate="blitzAccountApp.bankTransaction.amount">Amount</label>
+          <input type="number" class="form-control" name="amount" id="field_amount" data-cy="amount" formControlName="amount" />
+          @if (amountRef.invalid && (amountRef.dirty || amountRef.touched)) {
+            <div>
+              @if (editForm.get('amount')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('amount')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let directionRef = editForm.get('direction')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_direction" jhiTranslate="blitzAccountApp.bankTransaction.direction">Direction</label>
+          <select class="form-control" name="direction" formControlName="direction" id="field_direction" data-cy="direction">
+            <option [ngValue]="null">{{ 'blitzAccountApp.TransactionDirection.null' | translate }}</option>
+            @for (transactionDirection of transactionDirectionValues; track $index) {
+              <option [value]="transactionDirection">
+                {{ 'blitzAccountApp.TransactionDirection.' + transactionDirection | translate }}
+              </option>
+            }
+          </select>
+          @if (directionRef.invalid && (directionRef.dirty || directionRef.touched)) {
+            <div>
+              @if (editForm.get('direction')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_relatedPaymentId" jhiTranslate="blitzAccountApp.bankTransaction.relatedPaymentId"
+            >Related Payment Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="relatedPaymentId"
+            id="field_relatedPaymentId"
+            data-cy="relatedPaymentId"
+            formControlName="relatedPaymentId"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_description" jhiTranslate="blitzAccountApp.bankTransaction.description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

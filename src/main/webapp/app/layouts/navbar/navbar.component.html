@@ -43,6 +43,330 @@
               </span>
             </a>
             <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/currency"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.currency">Currency</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/exchange-rate"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.exchangeRate">Exchange Rate</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/vat-rate"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.vatRate">VAT Rate</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/chart-of-account"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.chartOfAccount">Chart Of Account</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/bank-account"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.bankAccount">Bank Account</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/bank-transaction"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.bankTransaction">Bank Transaction</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/transaction"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.transaction">Transaction</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/employee"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.employee">Employee</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/supplier"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.supplier">Supplier</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/product-category"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.productCategory">Product Category</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/product"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.product">Product</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/payment"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.payment">Payment</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/quote"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.quote">Quote</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/quote-line"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.quoteLine">Quote Line</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/invoice"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.invoice">Invoice</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/invoice-line"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.invoiceLine">Invoice Line</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/cash-sale"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.cashSale">Cash Sale</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/vehicle"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.vehicle">Vehicle</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/fleet-trip"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.fleetTrip">Fleet Trip</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/fuel-log"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.fuelLog">Fuel Log</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/service-log"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.serviceLog">Service Log</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/incident-log"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.incidentLog">Incident Log</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/budget"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.budget">Budget</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/recurring-transaction"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.recurringTransaction">Recurring Transaction</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/journal"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.journal">Journal</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/journal-line"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.journalLine">Journal Line</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  routerLink="/fleet-trip-location"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="collapseNavbar()"
+                >
+                  <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                  <span jhiTranslate="global.menu.entities.fleetTripLocation">Fleet Trip Location</span>
+                </a>
+              </li>
               <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
             </ul>
           </li>

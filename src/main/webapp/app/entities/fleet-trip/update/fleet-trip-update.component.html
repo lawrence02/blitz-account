@@ -1,0 +1,181 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-fleet-trip-heading"
+        data-cy="FleetTripCreateUpdateHeading"
+        jhiTranslate="blitzAccountApp.fleetTrip.home.createOrEditLabel"
+      >
+        Create or edit a Fleet Trip
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="blitzAccountApp.fleetTrip.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let vehicleIdRef = editForm.get('vehicleId')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_vehicleId" jhiTranslate="blitzAccountApp.fleetTrip.vehicleId">Vehicle Id</label>
+          <input type="number" class="form-control" name="vehicleId" id="field_vehicleId" data-cy="vehicleId" formControlName="vehicleId" />
+          @if (vehicleIdRef.invalid && (vehicleIdRef.dirty || vehicleIdRef.touched)) {
+            <div>
+              @if (editForm.get('vehicleId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('vehicleId')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_driverId" jhiTranslate="blitzAccountApp.fleetTrip.driverId">Driver Id</label>
+          <input type="number" class="form-control" name="driverId" id="field_driverId" data-cy="driverId" formControlName="driverId" />
+        </div>
+
+        @let startDateRef = editForm.get('startDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_startDate" jhiTranslate="blitzAccountApp.fleetTrip.startDate">Start Date</label>
+          <div class="d-flex">
+            <input
+              id="field_startDate"
+              data-cy="startDate"
+              type="datetime-local"
+              class="form-control"
+              name="startDate"
+              formControlName="startDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (startDateRef.invalid && (startDateRef.dirty || startDateRef.touched)) {
+            <div>
+              @if (editForm.get('startDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('startDate')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_endDate" jhiTranslate="blitzAccountApp.fleetTrip.endDate">End Date</label>
+          <div class="d-flex">
+            <input
+              id="field_endDate"
+              data-cy="endDate"
+              type="datetime-local"
+              class="form-control"
+              name="endDate"
+              formControlName="endDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_distanceKm" jhiTranslate="blitzAccountApp.fleetTrip.distanceKm">Distance Km</label>
+          <input
+            type="number"
+            class="form-control"
+            name="distanceKm"
+            id="field_distanceKm"
+            data-cy="distanceKm"
+            formControlName="distanceKm"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_startLocation" jhiTranslate="blitzAccountApp.fleetTrip.startLocation">Start Location</label>
+          <input
+            type="text"
+            class="form-control"
+            name="startLocation"
+            id="field_startLocation"
+            data-cy="startLocation"
+            formControlName="startLocation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_endLocation" jhiTranslate="blitzAccountApp.fleetTrip.endLocation">End Location</label>
+          <input
+            type="text"
+            class="form-control"
+            name="endLocation"
+            id="field_endLocation"
+            data-cy="endLocation"
+            formControlName="endLocation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_loadType" jhiTranslate="blitzAccountApp.fleetTrip.loadType">Load Type</label>
+          <input type="text" class="form-control" name="loadType" id="field_loadType" data-cy="loadType" formControlName="loadType" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_loadDescription" jhiTranslate="blitzAccountApp.fleetTrip.loadDescription"
+            >Load Description</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="loadDescription"
+            id="field_loadDescription"
+            data-cy="loadDescription"
+            formControlName="loadDescription"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_routeGeoCoordinates" jhiTranslate="blitzAccountApp.fleetTrip.routeGeoCoordinates"
+            >Route Geo Coordinates</label
+          >
+          <textarea
+            class="form-control"
+            name="routeGeoCoordinates"
+            id="field_routeGeoCoordinates"
+            data-cy="routeGeoCoordinates"
+            formControlName="routeGeoCoordinates"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tripCost" jhiTranslate="blitzAccountApp.fleetTrip.tripCost">Trip Cost</label>
+          <input type="number" class="form-control" name="tripCost" id="field_tripCost" data-cy="tripCost" formControlName="tripCost" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

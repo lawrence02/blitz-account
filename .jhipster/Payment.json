@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084902"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "amount",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "paymentDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "method",
+      "fieldType": "PaymentMethod",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CASH,BANK_TRANSFER,MOBILE_MONEY"
+    },
+    {
+      "fieldName": "currencyId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "bankAccountId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "invoiceId",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "Payment",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

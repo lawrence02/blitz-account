@@ -1,0 +1,149 @@
+<div>
+  <h2 id="page-heading" data-cy="QuoteHeading">
+    <span jhiTranslate="blitzAccountApp.quote.home.title">Quotes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="blitzAccountApp.quote.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-quote"
+        [routerLink]="['/quote/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="blitzAccountApp.quote.home.createLabel">Create a new Quote</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (quotes().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="blitzAccountApp.quote.home.notFound">No Quotes found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="clientName">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.quote.clientName">Client Name</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="issueDate">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.quote.issueDate">Issue Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="status">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.quote.status">Status</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="currencyId">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.quote.currencyId">Currency Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="vatRateId">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.quote.vatRateId">Vat Rate Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="totalAmount">
+              <div class="d-flex">
+                <span jhiTranslate="blitzAccountApp.quote.totalAmount">Total Amount</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (quote of quotes(); track trackId(quote)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/quote', quote.id, 'view']">{{ quote.id }}</a>
+              </td>
+              <td>{{ quote.clientName }}</td>
+              <td>{{ quote.issueDate | formatMediumDatetime }}</td>
+              <td [jhiTranslate]="'blitzAccountApp.DocumentStatus.' + (quote.status ?? 'null')">
+                {{
+                  { null: '', DRAFT: 'DRAFT', SENT: 'SENT', APPROVED: 'APPROVED', REJECTED: 'REJECTED', PAID: 'PAID' }[
+                    quote.status ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ quote.currencyId }}</td>
+              <td>{{ quote.vatRateId }}</td>
+              <td>{{ quote.totalAmount }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/quote', quote.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/quote', quote.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(quote)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (quotes().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

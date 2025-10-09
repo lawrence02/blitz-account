@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084913"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "accountId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "amount",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Budget",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

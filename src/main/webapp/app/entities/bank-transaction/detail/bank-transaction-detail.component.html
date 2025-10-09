@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (bankTransaction(); as bankTransactionRef) {
+      <div>
+        <h2 data-cy="bankTransactionDetailsHeading">
+          <span jhiTranslate="blitzAccountApp.bankTransaction.detail.title">Bank Transaction</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ bankTransactionRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.bankTransaction.bankAccountId">Bank Account Id</span></dt>
+          <dd>
+            <span>{{ bankTransactionRef.bankAccountId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.bankTransaction.transactionDate">Transaction Date</span></dt>
+          <dd>
+            <span>{{ bankTransactionRef.transactionDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.bankTransaction.reference">Reference</span></dt>
+          <dd>
+            <span>{{ bankTransactionRef.reference }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.bankTransaction.amount">Amount</span></dt>
+          <dd>
+            <span>{{ bankTransactionRef.amount }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.bankTransaction.direction">Direction</span></dt>
+          <dd>
+            <span [jhiTranslate]="'blitzAccountApp.TransactionDirection.' + (bankTransactionRef.direction ?? 'null')">{{
+              { null: '', CREDIT: 'CREDIT', DEBIT: 'DEBIT' }[bankTransactionRef.direction ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.bankTransaction.relatedPaymentId">Related Payment Id</span></dt>
+          <dd>
+            <span>{{ bankTransactionRef.relatedPaymentId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.bankTransaction.description">Description</span></dt>
+          <dd>
+            <span>{{ bankTransactionRef.description }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/bank-transaction', bankTransactionRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

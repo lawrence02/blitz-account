@@ -1,0 +1,39 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084911"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "vehicleId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "serviceDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cost",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "mileageAtService",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "supplierId",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "ServiceLog",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

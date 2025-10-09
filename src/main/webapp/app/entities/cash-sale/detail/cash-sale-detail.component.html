@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (cashSale(); as cashSaleRef) {
+      <div>
+        <h2 data-cy="cashSaleDetailsHeading"><span jhiTranslate="blitzAccountApp.cashSale.detail.title">Cash Sale</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ cashSaleRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.cashSale.productId">Product Id</span></dt>
+          <dd>
+            <span>{{ cashSaleRef.productId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.cashSale.quantity">Quantity</span></dt>
+          <dd>
+            <span>{{ cashSaleRef.quantity }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.cashSale.unitPrice">Unit Price</span></dt>
+          <dd>
+            <span>{{ cashSaleRef.unitPrice }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.cashSale.vatRateId">Vat Rate Id</span></dt>
+          <dd>
+            <span>{{ cashSaleRef.vatRateId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.cashSale.currencyId">Currency Id</span></dt>
+          <dd>
+            <span>{{ cashSaleRef.currencyId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.cashSale.saleDate">Sale Date</span></dt>
+          <dd>
+            <span>{{ cashSaleRef.saleDate | formatMediumDatetime }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/cash-sale', cashSaleRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

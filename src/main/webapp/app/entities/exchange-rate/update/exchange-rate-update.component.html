@@ -1,0 +1,141 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-exchange-rate-heading"
+        data-cy="ExchangeRateCreateUpdateHeading"
+        jhiTranslate="blitzAccountApp.exchangeRate.home.createOrEditLabel"
+      >
+        Create or edit a Exchange Rate
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="blitzAccountApp.exchangeRate.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let baseCurrencyIdRef = editForm.get('baseCurrencyId')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_baseCurrencyId" jhiTranslate="blitzAccountApp.exchangeRate.baseCurrencyId"
+            >Base Currency Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="baseCurrencyId"
+            id="field_baseCurrencyId"
+            data-cy="baseCurrencyId"
+            formControlName="baseCurrencyId"
+          />
+          @if (baseCurrencyIdRef.invalid && (baseCurrencyIdRef.dirty || baseCurrencyIdRef.touched)) {
+            <div>
+              @if (editForm.get('baseCurrencyId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('baseCurrencyId')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let targetCurrencyIdRef = editForm.get('targetCurrencyId')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_targetCurrencyId" jhiTranslate="blitzAccountApp.exchangeRate.targetCurrencyId"
+            >Target Currency Id</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="targetCurrencyId"
+            id="field_targetCurrencyId"
+            data-cy="targetCurrencyId"
+            formControlName="targetCurrencyId"
+          />
+          @if (targetCurrencyIdRef.invalid && (targetCurrencyIdRef.dirty || targetCurrencyIdRef.touched)) {
+            <div>
+              @if (editForm.get('targetCurrencyId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('targetCurrencyId')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let rateRef = editForm.get('rate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_rate" jhiTranslate="blitzAccountApp.exchangeRate.rate">Rate</label>
+          <input type="number" class="form-control" name="rate" id="field_rate" data-cy="rate" formControlName="rate" />
+          @if (rateRef.invalid && (rateRef.dirty || rateRef.touched)) {
+            <div>
+              @if (editForm.get('rate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small class="form-text text-danger" [hidden]="!editForm.get('rate')?.errors?.number" jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let rateDateRef = editForm.get('rateDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_rateDate" jhiTranslate="blitzAccountApp.exchangeRate.rateDate">Rate Date</label>
+          <div class="d-flex">
+            <input
+              id="field_rateDate"
+              data-cy="rateDate"
+              type="datetime-local"
+              class="form-control"
+              name="rateDate"
+              formControlName="rateDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (rateDateRef.invalid && (rateDateRef.dirty || rateDateRef.touched)) {
+            <div>
+              @if (editForm.get('rateDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('rateDate')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

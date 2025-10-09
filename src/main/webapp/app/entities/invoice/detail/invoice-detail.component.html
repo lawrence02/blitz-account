@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (invoice(); as invoiceRef) {
+      <div>
+        <h2 data-cy="invoiceDetailsHeading"><span jhiTranslate="blitzAccountApp.invoice.detail.title">Invoice</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ invoiceRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoice.clientName">Client Name</span></dt>
+          <dd>
+            <span>{{ invoiceRef.clientName }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoice.issueDate">Issue Date</span></dt>
+          <dd>
+            <span>{{ invoiceRef.issueDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoice.dueDate">Due Date</span></dt>
+          <dd>
+            <span>{{ invoiceRef.dueDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoice.status">Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'blitzAccountApp.DocumentStatus.' + (invoiceRef.status ?? 'null')">{{
+              { null: '', DRAFT: 'DRAFT', SENT: 'SENT', APPROVED: 'APPROVED', REJECTED: 'REJECTED', PAID: 'PAID' }[
+                invoiceRef.status ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoice.currencyId">Currency Id</span></dt>
+          <dd>
+            <span>{{ invoiceRef.currencyId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoice.vatRateId">Vat Rate Id</span></dt>
+          <dd>
+            <span>{{ invoiceRef.vatRateId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoice.totalAmount">Total Amount</span></dt>
+          <dd>
+            <span>{{ invoiceRef.totalAmount }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoice.paidAmount">Paid Amount</span></dt>
+          <dd>
+            <span>{{ invoiceRef.paidAmount }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.invoice.paymentStatus">Payment Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'blitzAccountApp.PaymentStatus.' + (invoiceRef.paymentStatus ?? 'null')">{{
+              { null: '', UNPAID: 'UNPAID', PARTIALLY_PAID: 'PARTIALLY_PAID', PAID: 'PAID' }[invoiceRef.paymentStatus ?? 'null']
+            }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/invoice', invoiceRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

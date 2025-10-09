@@ -1,0 +1,111 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-fuel-log-heading" data-cy="FuelLogCreateUpdateHeading" jhiTranslate="blitzAccountApp.fuelLog.home.createOrEditLabel">
+        Create or edit a Fuel Log
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="blitzAccountApp.fuelLog.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let vehicleIdRef = editForm.get('vehicleId')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_vehicleId" jhiTranslate="blitzAccountApp.fuelLog.vehicleId">Vehicle Id</label>
+          <input type="number" class="form-control" name="vehicleId" id="field_vehicleId" data-cy="vehicleId" formControlName="vehicleId" />
+          @if (vehicleIdRef.invalid && (vehicleIdRef.dirty || vehicleIdRef.touched)) {
+            <div>
+              @if (editForm.get('vehicleId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('vehicleId')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let dateRef = editForm.get('date')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_date" jhiTranslate="blitzAccountApp.fuelLog.date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (dateRef.invalid && (dateRef.dirty || dateRef.touched)) {
+            <div>
+              @if (editForm.get('date')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('date')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fuelVolume" jhiTranslate="blitzAccountApp.fuelLog.fuelVolume">Fuel Volume</label>
+          <input
+            type="number"
+            class="form-control"
+            name="fuelVolume"
+            id="field_fuelVolume"
+            data-cy="fuelVolume"
+            formControlName="fuelVolume"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fuelCost" jhiTranslate="blitzAccountApp.fuelLog.fuelCost">Fuel Cost</label>
+          <input type="number" class="form-control" name="fuelCost" id="field_fuelCost" data-cy="fuelCost" formControlName="fuelCost" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_location" jhiTranslate="blitzAccountApp.fuelLog.location">Location</label>
+          <input type="text" class="form-control" name="location" id="field_location" data-cy="location" formControlName="location" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tripId" jhiTranslate="blitzAccountApp.fuelLog.tripId">Trip Id</label>
+          <input type="number" class="form-control" name="tripId" id="field_tripId" data-cy="tripId" formControlName="tripId" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

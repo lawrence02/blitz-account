@@ -1,0 +1,29 @@
+{
+  "blitzAccountApp": {
+    "incidentLog": {
+      "home": {
+        "title": "Incident Logs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Incident Log",
+        "createOrEditLabel": "Create or edit a Incident Log",
+        "notFound": "No Incident Logs found"
+      },
+      "created": "A new Incident Log is created with identifier {{ param }}",
+      "updated": "A Incident Log is updated with identifier {{ param }}",
+      "deleted": "A Incident Log is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Incident Log {{ id }}?"
+      },
+      "detail": {
+        "title": "Incident Log"
+      },
+      "id": "ID",
+      "vehicleId": "Vehicle Id",
+      "tripId": "Trip Id",
+      "incidentDate": "Incident Date",
+      "type": "Type",
+      "description": "Description",
+      "cost": "Cost"
+    }
+  }
+}

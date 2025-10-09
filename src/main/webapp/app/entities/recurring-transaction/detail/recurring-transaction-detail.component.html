@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (recurringTransaction(); as recurringTransactionRef) {
+      <div>
+        <h2 data-cy="recurringTransactionDetailsHeading">
+          <span jhiTranslate="blitzAccountApp.recurringTransaction.detail.title">Recurring Transaction</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ recurringTransactionRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.recurringTransaction.name">Name</span></dt>
+          <dd>
+            <span>{{ recurringTransactionRef.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.recurringTransaction.amount">Amount</span></dt>
+          <dd>
+            <span>{{ recurringTransactionRef.amount }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.recurringTransaction.frequency">Frequency</span></dt>
+          <dd>
+            <span>{{ recurringTransactionRef.frequency }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.recurringTransaction.startDate">Start Date</span></dt>
+          <dd>
+            <span>{{ recurringTransactionRef.startDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.recurringTransaction.endDate">End Date</span></dt>
+          <dd>
+            <span>{{ recurringTransactionRef.endDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.recurringTransaction.accountId">Account Id</span></dt>
+          <dd>
+            <span>{{ recurringTransactionRef.accountId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.recurringTransaction.currencyId">Currency Id</span></dt>
+          <dd>
+            <span>{{ recurringTransactionRef.currencyId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.recurringTransaction.vatRateId">Vat Rate Id</span></dt>
+          <dd>
+            <span>{{ recurringTransactionRef.vatRateId }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/recurring-transaction', recurringTransactionRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

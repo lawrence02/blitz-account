@@ -1,0 +1,26 @@
+{
+  "blitzAccountApp": {
+    "journal": {
+      "home": {
+        "title": "Journals",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Journal",
+        "createOrEditLabel": "Create or edit a Journal",
+        "notFound": "No Journals found"
+      },
+      "created": "A new Journal is created with identifier {{ param }}",
+      "updated": "A Journal is updated with identifier {{ param }}",
+      "deleted": "A Journal is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Journal {{ id }}?"
+      },
+      "detail": {
+        "title": "Journal"
+      },
+      "id": "ID",
+      "journalDate": "Journal Date",
+      "reference": "Reference",
+      "description": "Description"
+    }
+  }
+}

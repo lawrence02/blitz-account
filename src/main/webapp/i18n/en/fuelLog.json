@@ -1,0 +1,29 @@
+{
+  "blitzAccountApp": {
+    "fuelLog": {
+      "home": {
+        "title": "Fuel Logs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Fuel Log",
+        "createOrEditLabel": "Create or edit a Fuel Log",
+        "notFound": "No Fuel Logs found"
+      },
+      "created": "A new Fuel Log is created with identifier {{ param }}",
+      "updated": "A Fuel Log is updated with identifier {{ param }}",
+      "deleted": "A Fuel Log is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Fuel Log {{ id }}?"
+      },
+      "detail": {
+        "title": "Fuel Log"
+      },
+      "id": "ID",
+      "vehicleId": "Vehicle Id",
+      "date": "Date",
+      "fuelVolume": "Fuel Volume",
+      "fuelCost": "Fuel Cost",
+      "location": "Location",
+      "tripId": "Trip Id"
+    }
+  }
+}

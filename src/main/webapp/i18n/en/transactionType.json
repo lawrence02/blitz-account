@@ -1,0 +1,9 @@
+{
+  "blitzAccountApp": {
+    "TransactionType": {
+      "null": "",
+      "INCOME": "INCOME",
+      "EXPENSE": "EXPENSE"
+    }
+  }
+}

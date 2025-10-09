@@ -1,0 +1,31 @@
+{
+  "blitzAccountApp": {
+    "recurringTransaction": {
+      "home": {
+        "title": "Recurring Transactions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Recurring Transaction",
+        "createOrEditLabel": "Create or edit a Recurring Transaction",
+        "notFound": "No Recurring Transactions found"
+      },
+      "created": "A new Recurring Transaction is created with identifier {{ param }}",
+      "updated": "A Recurring Transaction is updated with identifier {{ param }}",
+      "deleted": "A Recurring Transaction is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Recurring Transaction {{ id }}?"
+      },
+      "detail": {
+        "title": "Recurring Transaction"
+      },
+      "id": "ID",
+      "name": "Name",
+      "amount": "Amount",
+      "frequency": "Frequency",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "accountId": "Account Id",
+      "currencyId": "Currency Id",
+      "vatRateId": "Vat Rate Id"
+    }
+  }
+}

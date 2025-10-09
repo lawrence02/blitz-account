@@ -1,0 +1,29 @@
+{
+  "blitzAccountApp": {
+    "serviceLog": {
+      "home": {
+        "title": "Service Logs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Service Log",
+        "createOrEditLabel": "Create or edit a Service Log",
+        "notFound": "No Service Logs found"
+      },
+      "created": "A new Service Log is created with identifier {{ param }}",
+      "updated": "A Service Log is updated with identifier {{ param }}",
+      "deleted": "A Service Log is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Service Log {{ id }}?"
+      },
+      "detail": {
+        "title": "Service Log"
+      },
+      "id": "ID",
+      "vehicleId": "Vehicle Id",
+      "serviceDate": "Service Date",
+      "description": "Description",
+      "cost": "Cost",
+      "mileageAtService": "Mileage At Service",
+      "supplierId": "Supplier Id"
+    }
+  }
+}

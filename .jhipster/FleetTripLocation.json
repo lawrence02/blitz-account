@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084917"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "fleetTripId",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "timestamp",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "latitude",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "longitude",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "speed",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "heading",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "FleetTripLocation",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

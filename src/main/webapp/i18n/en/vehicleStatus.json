@@ -1,0 +1,11 @@
+{
+  "blitzAccountApp": {
+    "VehicleStatus": {
+      "null": "",
+      "AVAILABLE": "AVAILABLE",
+      "IDLE": "IDLE",
+      "MAINTENANCE": "MAINTENANCE",
+      "IN_TRIP": "IN_TRIP"
+    }
+  }
+}

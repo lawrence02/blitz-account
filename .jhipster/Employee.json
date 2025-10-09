@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20251009084858"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "role",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contactNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Employee",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (vehicle(); as vehicleRef) {
+      <div>
+        <h2 data-cy="vehicleDetailsHeading"><span jhiTranslate="blitzAccountApp.vehicle.detail.title">Vehicle</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ vehicleRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.vehicle.name">Name</span></dt>
+          <dd>
+            <span>{{ vehicleRef.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.vehicle.licensePlate">License Plate</span></dt>
+          <dd>
+            <span>{{ vehicleRef.licensePlate }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.vehicle.type">Type</span></dt>
+          <dd>
+            <span>{{ vehicleRef.type }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.vehicle.currentMileage">Current Mileage</span></dt>
+          <dd>
+            <span>{{ vehicleRef.currentMileage }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.vehicle.status">Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'blitzAccountApp.VehicleStatus.' + (vehicleRef.status ?? 'null')">{{
+              { null: '', AVAILABLE: 'AVAILABLE', IDLE: 'IDLE', MAINTENANCE: 'MAINTENANCE', IN_TRIP: 'IN_TRIP' }[
+                vehicleRef.status ?? 'null'
+              ]
+            }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/vehicle', vehicleRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

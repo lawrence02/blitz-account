@@ -1,0 +1,25 @@
+{
+  "blitzAccountApp": {
+    "vATRate": {
+      "home": {
+        "title": "VAT Rates",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new VAT Rate",
+        "createOrEditLabel": "Create or edit a VAT Rate",
+        "notFound": "No VAT Rates found"
+      },
+      "created": "A new VAT Rate is created with identifier {{ param }}",
+      "updated": "A VAT Rate is updated with identifier {{ param }}",
+      "deleted": "A VAT Rate is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete VAT Rate {{ id }}?"
+      },
+      "detail": {
+        "title": "VAT Rate"
+      },
+      "id": "ID",
+      "name": "Name",
+      "percentage": "Percentage"
+    }
+  }
+}

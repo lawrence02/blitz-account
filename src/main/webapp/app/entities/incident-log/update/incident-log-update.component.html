@@ -1,0 +1,120 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-incident-log-heading"
+        data-cy="IncidentLogCreateUpdateHeading"
+        jhiTranslate="blitzAccountApp.incidentLog.home.createOrEditLabel"
+      >
+        Create or edit a Incident Log
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="blitzAccountApp.incidentLog.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let vehicleIdRef = editForm.get('vehicleId')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_vehicleId" jhiTranslate="blitzAccountApp.incidentLog.vehicleId">Vehicle Id</label>
+          <input type="number" class="form-control" name="vehicleId" id="field_vehicleId" data-cy="vehicleId" formControlName="vehicleId" />
+          @if (vehicleIdRef.invalid && (vehicleIdRef.dirty || vehicleIdRef.touched)) {
+            <div>
+              @if (editForm.get('vehicleId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('vehicleId')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tripId" jhiTranslate="blitzAccountApp.incidentLog.tripId">Trip Id</label>
+          <input type="number" class="form-control" name="tripId" id="field_tripId" data-cy="tripId" formControlName="tripId" />
+        </div>
+
+        @let incidentDateRef = editForm.get('incidentDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_incidentDate" jhiTranslate="blitzAccountApp.incidentLog.incidentDate">Incident Date</label>
+          <div class="d-flex">
+            <input
+              id="field_incidentDate"
+              data-cy="incidentDate"
+              type="datetime-local"
+              class="form-control"
+              name="incidentDate"
+              formControlName="incidentDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (incidentDateRef.invalid && (incidentDateRef.dirty || incidentDateRef.touched)) {
+            <div>
+              @if (editForm.get('incidentDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('incidentDate')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_type" jhiTranslate="blitzAccountApp.incidentLog.type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'blitzAccountApp.IncidentType.null' | translate }}</option>
+            @for (incidentType of incidentTypeValues; track $index) {
+              <option [value]="incidentType">{{ 'blitzAccountApp.IncidentType.' + incidentType | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_description" jhiTranslate="blitzAccountApp.incidentLog.description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cost" jhiTranslate="blitzAccountApp.incidentLog.cost">Cost</label>
+          <input type="number" class="form-control" name="cost" id="field_cost" data-cy="cost" formControlName="cost" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

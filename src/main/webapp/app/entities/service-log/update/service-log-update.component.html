@@ -1,0 +1,131 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-service-log-heading"
+        data-cy="ServiceLogCreateUpdateHeading"
+        jhiTranslate="blitzAccountApp.serviceLog.home.createOrEditLabel"
+      >
+        Create or edit a Service Log
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="blitzAccountApp.serviceLog.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let vehicleIdRef = editForm.get('vehicleId')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_vehicleId" jhiTranslate="blitzAccountApp.serviceLog.vehicleId">Vehicle Id</label>
+          <input type="number" class="form-control" name="vehicleId" id="field_vehicleId" data-cy="vehicleId" formControlName="vehicleId" />
+          @if (vehicleIdRef.invalid && (vehicleIdRef.dirty || vehicleIdRef.touched)) {
+            <div>
+              @if (editForm.get('vehicleId')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('vehicleId')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let serviceDateRef = editForm.get('serviceDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_serviceDate" jhiTranslate="blitzAccountApp.serviceLog.serviceDate">Service Date</label>
+          <div class="d-flex">
+            <input
+              id="field_serviceDate"
+              data-cy="serviceDate"
+              type="datetime-local"
+              class="form-control"
+              name="serviceDate"
+              formControlName="serviceDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (serviceDateRef.invalid && (serviceDateRef.dirty || serviceDateRef.touched)) {
+            <div>
+              @if (editForm.get('serviceDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('serviceDate')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_description" jhiTranslate="blitzAccountApp.serviceLog.description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cost" jhiTranslate="blitzAccountApp.serviceLog.cost">Cost</label>
+          <input type="number" class="form-control" name="cost" id="field_cost" data-cy="cost" formControlName="cost" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mileageAtService" jhiTranslate="blitzAccountApp.serviceLog.mileageAtService"
+            >Mileage At Service</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="mileageAtService"
+            id="field_mileageAtService"
+            data-cy="mileageAtService"
+            formControlName="mileageAtService"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_supplierId" jhiTranslate="blitzAccountApp.serviceLog.supplierId">Supplier Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="supplierId"
+            id="field_supplierId"
+            data-cy="supplierId"
+            formControlName="supplierId"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

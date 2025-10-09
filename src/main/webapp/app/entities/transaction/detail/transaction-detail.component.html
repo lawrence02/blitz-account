@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (transaction(); as transactionRef) {
+      <div>
+        <h2 data-cy="transactionDetailsHeading"><span jhiTranslate="blitzAccountApp.transaction.detail.title">Transaction</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ transactionRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.transaction.type">Type</span></dt>
+          <dd>
+            <span [jhiTranslate]="'blitzAccountApp.TransactionType.' + (transactionRef.type ?? 'null')">{{
+              { null: '', INCOME: 'INCOME', EXPENSE: 'EXPENSE' }[transactionRef.type ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.transaction.amount">Amount</span></dt>
+          <dd>
+            <span>{{ transactionRef.amount }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.transaction.transactionDate">Transaction Date</span></dt>
+          <dd>
+            <span>{{ transactionRef.transactionDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.transaction.accountId">Account Id</span></dt>
+          <dd>
+            <span>{{ transactionRef.accountId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.transaction.vatRateId">Vat Rate Id</span></dt>
+          <dd>
+            <span>{{ transactionRef.vatRateId }}</span>
+          </dd>
+          <dt><span jhiTranslate="blitzAccountApp.transaction.currencyId">Currency Id</span></dt>
+          <dd>
+            <span>{{ transactionRef.currencyId }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/transaction', transactionRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
