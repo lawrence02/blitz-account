@@ -34,7 +34,7 @@ services:
       --spring.datasource.username=${MYSQL_USER}
       --spring.datasource.password=${MYSQL_PASSWORD}"
     ports:
-      - '${APP_PORT}:5050'
+      - '${APP_PORT}:5151'
     restart: always
 
 volumes:
