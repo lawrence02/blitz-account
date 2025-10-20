@@ -3,6 +3,7 @@ import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { NgxSelectModule } from 'ngx-select-ex';
 
 import SharedModule from 'app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,11 +18,22 @@ import { FleetTripFormGroup, FleetTripFormService } from './fleet-trip-form.serv
 @Component({
   selector: 'jhi-fleet-trip-update',
   templateUrl: './fleet-trip-update.component.html',
-  imports: [SharedModule, FormsModule, ReactiveFormsModule],
+  imports: [SharedModule, FormsModule, ReactiveFormsModule, NgxSelectModule],
 })
 export class FleetTripUpdateComponent implements OnInit {
   isSaving = false;
   fleetTrip: IFleetTrip | null = null;
+
+  vehicles: any[] = [
+    { id: '1', name: 'Dump Truck' },
+    { id: '2', name: 'Flatbed Truck' },
+    { id: '3', name: 'Box Truck' },
+  ];
+  drivers: any[] = [
+    { id: '1', name: 'John Doe' },
+    { id: '2', name: 'Jane Smith' },
+    { id: '3', name: 'Bob Johnson' },
+  ];
 
   protected dataUtils = inject(DataUtils);
   protected eventManager = inject(EventManager);
