@@ -10,3 +10,11 @@ export interface IVehicle {
 }
 
 export type NewVehicle = Omit<IVehicle, 'id'> & { id: null };
+
+export interface IVehicleStats {
+  available: number;
+  inTrip: number;
+  maintenance: number;
+  idle: number;
+  total: number;
+}

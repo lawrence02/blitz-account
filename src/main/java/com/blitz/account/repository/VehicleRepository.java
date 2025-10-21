@@ -1,6 +1,7 @@
 package com.blitz.account.repository;
 
 import com.blitz.account.domain.Vehicle;
+import com.blitz.account.domain.enumeration.VehicleStatus;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +10,6 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface VehicleRepository extends JpaRepository<Vehicle, Long>, JpaSpecificationExecutor<Vehicle> {}
+public interface VehicleRepository extends JpaRepository<Vehicle, Long>, JpaSpecificationExecutor<Vehicle> {
+    int countByStatus(VehicleStatus status);
+}

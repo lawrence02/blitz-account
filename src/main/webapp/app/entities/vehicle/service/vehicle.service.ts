@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { IVehicle, NewVehicle } from '../vehicle.model';
+import { IVehicle, IVehicleStats, NewVehicle } from '../vehicle.model';
 
 export type PartialUpdateVehicle = Partial<IVehicle> & Pick<IVehicle, 'id'>;
 
@@ -38,6 +38,10 @@ export class VehicleService {
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IVehicle[]>(this.resourceUrl, { params: options, observe: 'response' });
+  }
+
+  getVehicleStats(): Observable<HttpResponse<IVehicleStats>> {
+    return this.http.get<IVehicleStats>(this.resourceUrl + '/vehicle-stats', { observe: 'response' });
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {

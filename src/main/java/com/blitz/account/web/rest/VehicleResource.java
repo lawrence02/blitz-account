@@ -5,6 +5,7 @@ import com.blitz.account.repository.VehicleRepository;
 import com.blitz.account.service.VehicleQueryService;
 import com.blitz.account.service.VehicleService;
 import com.blitz.account.service.criteria.VehicleCriteria;
+import com.blitz.account.service.dto.VehicleStatsDTO;
 import com.blitz.account.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -197,5 +198,11 @@ public class VehicleResource {
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/vehicle-stats")
+    public VehicleStatsDTO getVehicleStats() {
+        LOG.debug("REST request for VehicleStats");
+        return vehicleService.getVehicleStats();
     }
 }

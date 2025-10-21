@@ -1,7 +1,9 @@
 package com.blitz.account.service;
 
 import com.blitz.account.domain.Vehicle;
+import com.blitz.account.domain.enumeration.VehicleStatus;
 import com.blitz.account.repository.VehicleRepository;
+import com.blitz.account.service.dto.VehicleStatsDTO;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -98,5 +100,14 @@ public class VehicleService {
     public void delete(Long id) {
         LOG.debug("Request to delete Vehicle : {}", id);
         vehicleRepository.deleteById(id);
+    }
+
+    public VehicleStatsDTO getVehicleStats() {
+        int available = vehicleRepository.countByStatus(VehicleStatus.AVAILABLE);
+        int inTrip = vehicleRepository.countByStatus(VehicleStatus.IN_TRIP);
+        int maintenance = vehicleRepository.countByStatus(VehicleStatus.MAINTENANCE);
+        int idle = vehicleRepository.countByStatus(VehicleStatus.IDLE);
+
+        return new VehicleStatsDTO(available, inTrip, maintenance, idle);
     }
 }
