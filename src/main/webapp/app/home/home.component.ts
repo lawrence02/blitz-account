@@ -8,6 +8,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { VehicleService } from '../entities/vehicle/service/vehicle.service';
 import { IncidentLogService } from '../entities/incident-log/service/incident-log.service';
+import { InvoiceService } from '../entities/invoice/service/invoice.service';
 
 @Component({
   selector: 'jhi-home',
@@ -61,6 +62,7 @@ export default class HomeComponent implements OnInit, OnDestroy {
   private readonly accountService = inject(AccountService);
   private readonly vehicleStatsService = inject(VehicleService);
   private readonly incidentLogService = inject(IncidentLogService);
+  private readonly invoiceService = inject(InvoiceService);
   private readonly router = inject(Router);
 
   ngOnInit(): void {
@@ -109,11 +111,15 @@ export default class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadInvoiceStats(): void {
-    this.invoiceStats.set({
-      outstanding: 15,
-      overdue: 4,
-      totalAmount: 45000,
-      overdueAmount: 8500,
+    this.invoiceService.getInvoiceStats().subscribe({
+      next: res => {
+        if (res.body) {
+          this.invoiceStats.set(res.body);
+        }
+      },
+      error: err => {
+        console.error('Error fetching invoice stats', err);
+      },
     });
   }
 

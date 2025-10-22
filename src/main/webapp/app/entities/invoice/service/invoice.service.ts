@@ -7,7 +7,7 @@ import dayjs from 'dayjs/esm';
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { IInvoice, NewInvoice } from '../invoice.model';
+import { IInvoice, IInvoiceStats, NewInvoice } from '../invoice.model';
 
 export type PartialUpdateInvoice = Partial<IInvoice> & Pick<IInvoice, 'id'>;
 
@@ -57,6 +57,10 @@ export class InvoiceService {
     return this.http
       .get<RestInvoice>(`${this.resourceUrl}/${id}`, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
+  }
+
+  getInvoiceStats(): Observable<HttpResponse<IInvoiceStats>> {
+    return this.http.get<IInvoiceStats>(this.resourceUrl + '/invoice-stats', { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

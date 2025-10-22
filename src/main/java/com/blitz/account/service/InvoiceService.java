@@ -1,7 +1,11 @@
 package com.blitz.account.service;
 
 import com.blitz.account.domain.Invoice;
+import com.blitz.account.domain.enumeration.PaymentStatus;
 import com.blitz.account.repository.InvoiceRepository;
+import com.blitz.account.service.dto.InvoiceStatsDTO;
+import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -110,5 +114,18 @@ public class InvoiceService {
     public void delete(Long id) {
         LOG.debug("Request to delete Invoice : {}", id);
         invoiceRepository.deleteById(id);
+    }
+
+    public InvoiceStatsDTO getInvoiceStats() {
+        Instant now = Instant.now();
+
+        long outstanding = invoiceRepository.countByPaymentStatusIn(
+            new PaymentStatus[] { PaymentStatus.UNPAID, PaymentStatus.PARTIALLY_PAID }
+        );
+        long overdue = invoiceRepository.countOverdue(now);
+        BigDecimal totalAmount = invoiceRepository.findTotalAmount();
+        BigDecimal overdueAmount = invoiceRepository.sumOverdueAmount(now);
+
+        return new InvoiceStatsDTO(outstanding, overdue, totalAmount, overdueAmount);
     }
 }

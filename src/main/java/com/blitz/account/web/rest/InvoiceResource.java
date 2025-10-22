@@ -5,6 +5,7 @@ import com.blitz.account.repository.InvoiceRepository;
 import com.blitz.account.service.InvoiceQueryService;
 import com.blitz.account.service.InvoiceService;
 import com.blitz.account.service.criteria.InvoiceCriteria;
+import com.blitz.account.service.dto.InvoiceStatsDTO;
 import com.blitz.account.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -197,5 +198,10 @@ public class InvoiceResource {
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/invoice-stats")
+    public InvoiceStatsDTO getInvoiceStats() {
+        return invoiceService.getInvoiceStats();
     }
 }

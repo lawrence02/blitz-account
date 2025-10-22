@@ -16,3 +16,10 @@ export interface IInvoice {
 }
 
 export type NewInvoice = Omit<IInvoice, 'id'> & { id: null };
+
+export interface IInvoiceStats {
+  outstanding: number;
+  overdue: number;
+  totalAmount: number;
+  overdueAmount: number;
+}
