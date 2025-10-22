@@ -9,6 +9,7 @@ import { Account } from 'app/core/auth/account.model';
 import { VehicleService } from '../entities/vehicle/service/vehicle.service';
 import { IncidentLogService } from '../entities/incident-log/service/incident-log.service';
 import { InvoiceService } from '../entities/invoice/service/invoice.service';
+import { FleetTripService } from '../entities/fleet-trip/service/fleet-trip.service';
 
 @Component({
   selector: 'jhi-home',
@@ -62,6 +63,7 @@ export default class HomeComponent implements OnInit, OnDestroy {
   private readonly accountService = inject(AccountService);
   private readonly vehicleStatsService = inject(VehicleService);
   private readonly incidentLogService = inject(IncidentLogService);
+  private readonly fleetTripService = inject(FleetTripService);
   private readonly invoiceService = inject(InvoiceService);
   private readonly router = inject(Router);
 
@@ -124,10 +126,15 @@ export default class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadTripStats(): void {
-    this.tripStats.set({
-      activeTrips: 8,
-      completedToday: 12,
-      scheduledTomorrow: 6,
+    this.fleetTripService.getFleetTripStats().subscribe({
+      next: res => {
+        if (res.body) {
+          this.tripStats.set(res.body);
+        }
+      },
+      error: err => {
+        console.error('Error fetching trip stats', err);
+      },
     });
   }
 

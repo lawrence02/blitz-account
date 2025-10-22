@@ -5,6 +5,7 @@ import com.blitz.account.repository.FleetTripRepository;
 import com.blitz.account.service.FleetTripQueryService;
 import com.blitz.account.service.FleetTripService;
 import com.blitz.account.service.criteria.FleetTripCriteria;
+import com.blitz.account.service.dto.TripStatsDTO;
 import com.blitz.account.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -201,5 +202,10 @@ public class FleetTripResource {
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/trip-stats")
+    public TripStatsDTO getTripStats() {
+        return fleetTripService.getTripStats();
     }
 }

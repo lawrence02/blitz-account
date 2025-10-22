@@ -16,3 +16,9 @@ export interface IFleetTrip {
 }
 
 export type NewFleetTrip = Omit<IFleetTrip, 'id'> & { id: null };
+
+export interface ITripStats {
+  activeTrips: number;
+  completedToday: number;
+  scheduledTomorrow: number;
+}

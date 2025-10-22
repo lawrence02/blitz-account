@@ -2,6 +2,10 @@ package com.blitz.account.service;
 
 import com.blitz.account.domain.FleetTrip;
 import com.blitz.account.repository.FleetTripRepository;
+import com.blitz.account.service.dto.TripStatsDTO;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -116,5 +120,17 @@ public class FleetTripService {
     public void delete(Long id) {
         LOG.debug("Request to delete FleetTrip : {}", id);
         fleetTripRepository.deleteById(id);
+    }
+
+    public TripStatsDTO getTripStats() {
+        Instant now = Instant.now();
+        LocalDate today = LocalDate.now(ZoneId.systemDefault());
+        LocalDate tomorrow = today.plusDays(1);
+
+        long activeTrips = fleetTripRepository.countActiveTrips();
+        long completedToday = fleetTripRepository.countCompletedToday(today.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        long scheduledTomorrow = fleetTripRepository.countScheduledTomorrow(tomorrow.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        return new TripStatsDTO(activeTrips, completedToday, scheduledTomorrow);
     }
 }

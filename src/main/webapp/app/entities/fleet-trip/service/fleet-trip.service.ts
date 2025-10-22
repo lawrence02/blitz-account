@@ -7,7 +7,7 @@ import dayjs from 'dayjs/esm';
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { IFleetTrip, NewFleetTrip } from '../fleet-trip.model';
+import { IFleetTrip, ITripStats, NewFleetTrip } from '../fleet-trip.model';
 
 export type PartialUpdateFleetTrip = Partial<IFleetTrip> & Pick<IFleetTrip, 'id'>;
 
@@ -57,6 +57,10 @@ export class FleetTripService {
     return this.http
       .get<RestFleetTrip>(`${this.resourceUrl}/${id}`, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
+  }
+
+  getFleetTripStats(): Observable<HttpResponse<ITripStats>> {
+    return this.http.get<ITripStats>(this.resourceUrl + '/trip-stats', { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
