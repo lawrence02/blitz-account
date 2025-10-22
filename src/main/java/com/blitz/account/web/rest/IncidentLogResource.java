@@ -3,6 +3,7 @@ package com.blitz.account.web.rest;
 import com.blitz.account.domain.IncidentLog;
 import com.blitz.account.repository.IncidentLogRepository;
 import com.blitz.account.service.IncidentLogService;
+import com.blitz.account.service.dto.IncidentStatsDTO;
 import com.blitz.account.web.rest.errors.BadRequestAlertException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -175,5 +176,10 @@ public class IncidentLogResource {
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/incident-stats")
+    public IncidentStatsDTO getIncidentStats() {
+        return incidentLogService.getIncidentStats();
     }
 }

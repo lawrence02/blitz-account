@@ -7,7 +7,7 @@ import dayjs from 'dayjs/esm';
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
-import { IIncidentLog, NewIncidentLog } from '../incident-log.model';
+import { IIncidentLog, IIncidentStats, NewIncidentLog } from '../incident-log.model';
 
 export type PartialUpdateIncidentLog = Partial<IIncidentLog> & Pick<IIncidentLog, 'id'>;
 
@@ -56,6 +56,10 @@ export class IncidentLogService {
     return this.http
       .get<RestIncidentLog>(`${this.resourceUrl}/${id}`, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
+  }
+
+  getIncidentStats(): Observable<HttpResponse<IIncidentStats>> {
+    return this.http.get<IIncidentStats>(this.resourceUrl + '/incident-stats', { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

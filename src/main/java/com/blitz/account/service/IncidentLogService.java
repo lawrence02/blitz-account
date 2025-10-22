@@ -1,7 +1,12 @@
 package com.blitz.account.service;
 
 import com.blitz.account.domain.IncidentLog;
+import com.blitz.account.domain.enumeration.IncidentType;
 import com.blitz.account.repository.IncidentLogRepository;
+import com.blitz.account.service.dto.IncidentStatsDTO;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -115,5 +120,23 @@ public class IncidentLogService {
     public void delete(Long id) {
         LOG.debug("Request to delete IncidentLog : {}", id);
         incidentLogRepository.deleteById(id);
+    }
+
+    public IncidentStatsDTO getIncidentStats() {
+        int accidents = incidentLogRepository.countByType(IncidentType.ACCIDENT);
+        int dents = incidentLogRepository.countByType(IncidentType.DENT);
+        int breakdowns = incidentLogRepository.countByType(IncidentType.BREAKDOWN);
+
+        // Calculate incidents this month
+        LocalDateTime now = LocalDateTime.now();
+        Instant startOfMonth = now.withDayOfMonth(1).atZone(ZoneId.systemDefault()).toInstant();
+        Instant nowInstant = Instant.now();
+        int thisMonth = (int) incidentLogRepository
+            .findAll()
+            .stream()
+            .filter(i -> i.getIncidentDate().isAfter(startOfMonth) && i.getIncidentDate().isBefore(nowInstant))
+            .count();
+
+        return new IncidentStatsDTO(accidents, breakdowns, dents, thisMonth);
     }
 }

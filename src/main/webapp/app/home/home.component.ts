@@ -7,6 +7,7 @@ import SharedModule from 'app/shared/shared.module';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { VehicleService } from '../entities/vehicle/service/vehicle.service';
+import { IncidentLogService } from '../entities/incident-log/service/incident-log.service';
 
 @Component({
   selector: 'jhi-home',
@@ -59,6 +60,7 @@ export default class HomeComponent implements OnInit, OnDestroy {
 
   private readonly accountService = inject(AccountService);
   private readonly vehicleStatsService = inject(VehicleService);
+  private readonly incidentLogService = inject(IncidentLogService);
   private readonly router = inject(Router);
 
   ngOnInit(): void {
@@ -81,19 +83,6 @@ export default class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadVehicleStats(): void {
-    // Example: this.vehicleService.getStats().subscribe(data => {
-    //   this.vehicleStats.set(data);
-    // });
-
-    // Mock data for now
-    /* this.vehicleStats.set({
-      available: 12,
-      inTrip: 8,
-      maintenance: 3,
-      idle: 2,
-      total: 25,
-    }); */
-
     this.vehicleStatsService.getVehicleStats().subscribe({
       next: res => {
         if (res.body) {
@@ -107,12 +96,15 @@ export default class HomeComponent implements OnInit, OnDestroy {
   }
 
   loadIncidentStats(): void {
-    this.incidentStats.set({
-      accidents: 2,
-      breakdowns: 5,
-      dents: 3,
-      total: 10,
-      thisMonth: 10,
+    this.incidentLogService.getIncidentStats().subscribe({
+      next: res => {
+        if (res.body) {
+          this.incidentStats.set(res.body);
+        }
+      },
+      error: err => {
+        console.error('Error fetching incident stats', err);
+      },
     });
   }
 

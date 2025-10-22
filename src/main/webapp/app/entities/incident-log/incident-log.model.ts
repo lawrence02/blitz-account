@@ -12,3 +12,11 @@ export interface IIncidentLog {
 }
 
 export type NewIncidentLog = Omit<IIncidentLog, 'id'> & { id: null };
+
+export interface IIncidentStats {
+  accidents: number;
+  breakdowns: number;
+  dents: number;
+  total: number;
+  thisMonth: number;
+}
